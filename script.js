@@ -9,106 +9,114 @@ function writePassword(event) {
 	passwordText.value = password;
 }
 
-const generatePassword = function () {
-	const getCapLtrs = function (useCapLtrs) {
-		const capLtrs = [];
+const getCapLtrs = function (useCapLtrs) {
+	const capLtrs = [];
 
-		if (useCapLtrs) {
-			const allCapLtrs = [
-				"A",
-				"B",
-				"C",
-				"D",
-				"E",
-				"F",
-				"G",
-				"H",
-				"I",
-				"J",
-				"K",
-				"L",
-				"M",
-				"N",
-				"O",
-				"P",
-				"Q",
-				"R",
-				"S",
-				"T",
-				"U",
-				"V",
-				"W",
-				"X",
-				"Y",
-				"Z",
-			];
-		}
-		return capLtrs;
-	};
-	const getLowLtrs = function (useLowLtrs) {
-		const lowLtrs = [];
-		if (useLowLtrs) {
-			const allLowLtrs = [
-				"a",
-				"b",
-				"c",
-				"d",
-				"e",
-				"f",
-				"g",
-				"h",
-				"i",
-				"j",
-				"k",
-				"l",
-				"m",
-				"n",
-				"o",
-				"p",
-				"q",
-				"r",
-				"s",
-				"t",
-				"u",
-				"v",
-				"w",
-				"x",
-				"y",
-				"z",
-			];
-		}
-		return lowLtrs;
-	};
-	const getSpChar = function (useSpChar) {
-		const spChar = [];
-		if (useSpChar) {
-			const allSpChar = [
-				"!",
-				"@",
-				"#",
-				"$",
-				"%",
-				"^",
-				" &",
-				"*",
-				"(",
-				" )",
-				"{",
-				"}",
-				"[",
-				"]",
-			];
-		}
-		return spChar;
-	};
-	const getNumbers = function (useNumbers) {
-		const numbers = [];
-		if (useNumbers) {
-			const allNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-		}
-		// i dont really know quite what is happening here at all, basically creating a function called getNumbers that refers back to useNumbers, then says that if useNumbers = true, then return the array of numbers.
-		return numbers;
-	};
+	if (useCapLtrs) {
+		const allCapLtrs = [
+			"A",
+			"B",
+			"C",
+			"D",
+			"E",
+			"F",
+			"G",
+			"H",
+			"I",
+			"J",
+			"K",
+			"L",
+			"M",
+			"N",
+			"O",
+			"P",
+			"Q",
+			"R",
+			"S",
+			"T",
+			"U",
+			"V",
+			"W",
+			"X",
+			"Y",
+			"Z",
+		];
+	}
+	return capLtrs;
+};
+const getLowLtrs = function (useLowLtrs) {
+	const lowLtrs = [];
+	if (useLowLtrs) {
+		const allLowLtrs = [
+			"a",
+			"b",
+			"c",
+			"d",
+			"e",
+			"f",
+			"g",
+			"h",
+			"i",
+			"j",
+			"k",
+			"l",
+			"m",
+			"n",
+			"o",
+			"p",
+			"q",
+			"r",
+			"s",
+			"t",
+			"u",
+			"v",
+			"w",
+			"x",
+			"y",
+			"z",
+		];
+	}
+	return lowLtrs;
+};
+const getSpChar = function (useSpChar) {
+	const spChar = [];
+	if (useSpChar) {
+		const allSpChar = [
+			"!",
+			"@",
+			"#",
+			"$",
+			"%",
+			"^",
+			" &",
+			"*",
+			"(",
+			" )",
+			"{",
+			"}",
+			"[",
+			"]",
+		];
+	}
+	return spChar;
+};
+const getNumbers = function (useNumbers) {
+	const numbers = [];
+	if (useNumbers) {
+		const allNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+	}
+	// i dont really know quite what is happening here at all, basically creating a function called getNumbers that refers back to useNumbers, then says that if useNumbers = true, then return the array of numbers.
+	return numbers;
+};
+
+const allCharacters = {
+	capital: getCapLtrs,
+	lower: getLowLtrs,
+	special: getSpChar,
+	numbers: getNumbers,
+};
+
+const generatePassword = function () {
 	const passwordLength = parseInt(
 		prompt(
 			"Enter a length you would like your password to be (between 8-128 characters)"
@@ -127,10 +135,12 @@ const generatePassword = function () {
 		const spChar = getSpChar(useSpChar);
 		// my understanding of what is happening here is that if useNumbers = true, then it accesses the array of  numbers in getNumbers
 		const numbers = getNumbers(useNumbers);
-
+		// generated password = ""
 		const generatedPassword = "";
+		// this shows what how many of the options of characters are wanted by the user, then console.logs it
 		const wantedChars = useCapLtrs + useLowLtrs + useSpChar + useNumbers;
 		console.log(wantedChars);
+		// array to display specifically which of the character types are wanted by the user
 		const charsArr = [
 			{ useCapLtrs },
 			{ useLowLtrs },
@@ -144,7 +154,7 @@ const generatePassword = function () {
 		if (wantedChars === 0) {
 			return "";
 		}
-
+		// this currently only generates the pattern of the password (upper, lower, special, number), but not the actual values of these (Ah#2)
 		for (let i = 0; i < passwordLength; i += wantedChars) {
 			charsArr.forEach((type) => {
 				const passGen = Object.keys(type)[0];
@@ -157,3 +167,7 @@ const generatePassword = function () {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+// problems im having--
+// still cannot generate a password
+// password length is set to be in groups of 4 (if selecting all 4 options(3 if 3 options selected, etc))

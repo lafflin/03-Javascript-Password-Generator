@@ -9,111 +9,106 @@ function writePassword(event) {
 	passwordText.value = password;
 }
 
-const getCapLtrs = function (useCapLtrs) {
-	const capLtrs = [];
-
-	if (useCapLtrs) {
-		const allCapLtrs = [
-			"A",
-			"B",
-			"C",
-			"D",
-			"E",
-			"F",
-			"G",
-			"H",
-			"I",
-			"J",
-			"K",
-			"L",
-			"M",
-			"N",
-			"O",
-			"P",
-			"Q",
-			"R",
-			"S",
-			"T",
-			"U",
-			"V",
-			"W",
-			"X",
-			"Y",
-			"Z",
-		];
-	}
-	return capLtrs;
-};
-const getLowLtrs = function (useLowLtrs) {
-	const lowLtrs = [];
-	if (useLowLtrs) {
-		const allLowLtrs = [
-			"a",
-			"b",
-			"c",
-			"d",
-			"e",
-			"f",
-			"g",
-			"h",
-			"i",
-			"j",
-			"k",
-			"l",
-			"m",
-			"n",
-			"o",
-			"p",
-			"q",
-			"r",
-			"s",
-			"t",
-			"u",
-			"v",
-			"w",
-			"x",
-			"y",
-			"z",
-		];
-	}
-	return lowLtrs;
-};
-const getSpChar = function (useSpChar) {
-	const spChar = [];
-	if (useSpChar) {
-		const allSpChar = [
-			"!",
-			"@",
-			"#",
-			"$",
-			"%",
-			"^",
-			" &",
-			"*",
-			"(",
-			" )",
-			"{",
-			"}",
-			"[",
-			"]",
-		];
-	}
-	return spChar;
-};
-const getNumbers = function (useNumbers) {
-	const numbers = [];
-	if (useNumbers) {
-		const allNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-	}
-	// i dont really know quite what is happening here at all, basically creating a function called getNumbers that refers back to useNumbers, then says that if useNumbers = true, then return the array of numbers.
-	return numbers;
-};
-
 const allCharacters = {
-	capital: getCapLtrs,
-	lower: getLowLtrs,
-	special: getSpChar,
-	numbers: getNumbers,
+	getCapLtrs: function (useCapLtrs) {
+		const capLtrs = [];
+
+		if (useCapLtrs) {
+			const allCapLtrs = [
+				"A",
+				"B",
+				"C",
+				"D",
+				"E",
+				"F",
+				"G",
+				"H",
+				"I",
+				"J",
+				"K",
+				"L",
+				"M",
+				"N",
+				"O",
+				"P",
+				"Q",
+				"R",
+				"S",
+				"T",
+				"U",
+				"V",
+				"W",
+				"X",
+				"Y",
+				"Z",
+			];
+		}
+		return capLtrs;
+	},
+	getLowLtrs: function (useLowLtrs) {
+		const lowLtrs = [];
+		if (useLowLtrs) {
+			const allLowLtrs = [
+				"a",
+				"b",
+				"c",
+				"d",
+				"e",
+				"f",
+				"g",
+				"h",
+				"i",
+				"j",
+				"k",
+				"l",
+				"m",
+				"n",
+				"o",
+				"p",
+				"q",
+				"r",
+				"s",
+				"t",
+				"u",
+				"v",
+				"w",
+				"x",
+				"y",
+				"z",
+			];
+		}
+		return lowLtrs;
+	},
+	getSpChar: function (useSpChar) {
+		const spChar = [];
+		if (useSpChar) {
+			const allSpChar = [
+				"!",
+				"@",
+				"#",
+				"$",
+				"%",
+				"^",
+				" &",
+				"*",
+				"(",
+				" )",
+				"{",
+				"}",
+				"[",
+				"]",
+			];
+		}
+		return spChar;
+	},
+	getNumbers: function (useNumbers) {
+		const numbers = [];
+		if (useNumbers) {
+			const allNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+		}
+		// i dont really know quite what is happening here at all, basically creating a function called getNumbers that refers back to useNumbers, then says that if useNumbers = true, then return the array of numbers.
+		return numbers;
+	},
 };
 
 const generatePassword = function () {
@@ -130,11 +125,11 @@ const generatePassword = function () {
 		const useLowLtrs = confirm("Would you like to use lowercase letters?");
 		const useSpChar = confirm("Would you like to use special characters?");
 		const useNumbers = confirm("Would you like to use numbers?");
-		const capLtrs = getCapLtrs(useCapLtrs);
-		const lowLtrs = getLowLtrs(useLowLtrs);
-		const spChar = getSpChar(useSpChar);
+		const capLtrs = allCharacters.getCapLtrs(useCapLtrs);
+		const lowLtrs = allCharacters.getLowLtrs(useLowLtrs);
+		const spChar = allCharacters.getSpChar(useSpChar);
 		// my understanding of what is happening here is that if useNumbers = true, then it accesses the array of  numbers in getNumbers
-		const numbers = getNumbers(useNumbers);
+		const numbers = allCharacters.getNumbers(useNumbers);
 		// generated password = ""
 		const generatedPassword = "";
 		// this shows what how many of the options of characters are wanted by the user, then console.logs it
@@ -160,6 +155,31 @@ const generatePassword = function () {
 				const passGen = Object.keys(type)[0];
 				console.log(passGen);
 			});
+
+			const randomize = [
+				function upperCase() {
+					return keys.allCharacters[0][
+						Math.floor(Math.random() * keys.allCharacters.getCapLtrs.length)
+					];
+				},
+				function lowerCase() {
+					return keys.allCharacters[1][
+						Math.floor(Math.random() * keys.allCharacters.getLowLtrs.length)
+					];
+				},
+				function specialChar() {
+					return keys.allCharacters[2][
+						Math.floor(Math.random() * keys.allCharacters.getSpChar.length)
+					];
+				},
+				function numberGen() {
+					return keys.allCharacters[3][
+						Math.floor(Math.random() * keys.allCharacters.getNumbers.length)
+					];
+				},
+			];
+			let keyGen = randomize[Math.floor(Math.random() * randomize.length)];
+			console.log(keyGen);
 		}
 		// generate password based on parameters set by user
 	}

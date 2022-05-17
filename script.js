@@ -150,6 +150,7 @@ generatePassword = function () {
 
 		function generatePassword() {
 			const generatedPassword = "";
+			// after getting assistance from askBCS, this function (which generated the pattern of the password) stop logging to the console and presumably stopped working
 			for (let i = 0; i < passwordLength; i++) {
 				charsArr.forEach((type) => {
 					const passGen = Object.keys(type)[0];

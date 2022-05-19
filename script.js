@@ -73,10 +73,10 @@ const allSpChar = [
 	"$",
 	"%",
 	"^",
-	" &",
+	"&",
 	"*",
 	"(",
-	" )",
+	")",
 	"{",
 	"}",
 	"[",
@@ -95,28 +95,32 @@ function generatePassword() {
 	passwordLength = prompt(
 		"Enter the length of your password (between 8-128 characters)"
 	);
+	// will return user back to entering the length if it is shorter or longer than required
 	if (passwordLength >= 8 && passwordLength <= 128) {
 	} else {
 		alert("The password has to be between 8 and 128 characters");
 		return generatePassword();
 	}
-
-	// if (passwordLength >= 8 && passwordLength <= 128) {
+	// asks if user would like to use capital letters, and if so it will concat them into the charSet array
 	if (confirm("Use capital letters?")) {
 		charSet = charSet.concat(allCapLtrs);
 	}
+	// asks if user would like to use lowercase letters, and if so it will concat them into the charSet array
 	if (confirm("Use lowercase letters?")) {
 		charSet = charSet.concat(allLowLtrs);
 	}
+	// asks if user would like to use special characters, and if so it will concat them into the charSet array
 	if (confirm("Use special characters?")) {
 		charSet = charSet.concat(allSpChar);
 	}
+	// asks if user would like to use numbers, and if so it will concat them into the charSet array
 	if (confirm("Use numbers?")) {
 		charSet = charSet.concat(allNumbers);
 	}
+	// logs what is in the charSet array after all the concat's
 	console.log(charSet);
 	for (let i = 0; i < passwordLength; i++) {
-		password += charSet[Math.floor(Math.random() * charSet.passwordLength)];
+		password += charSet[Math.floor(Math.random() * charSet.length)];
 	}
 	console.log(password);
 	return password;

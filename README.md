@@ -56,10 +56,9 @@ THEN the password is either displayed in an alert or written to the page
 
 ​
 
-### Screenshot !!!
+### Screenshot
 
-​
-![](./assets/Portfolio-Screenshot.png)
+![](./assets/screenshot-03.png)
 
 ### Links
 
@@ -69,11 +68,12 @@ THEN the password is either displayed in an alert or written to the page
 - Live Site URL: [Site](https://lafflin.github.io/03-Javascript-Password-Generator/)
   ​
 
-## My process !!!
+## My process
 
-​
-
-1.
+1. The first thing I did was I went to a study group session with our TA, Luigi, and he helped me to get my initial code set up.
+2. Following this I spent many hours trying to get the code to work from there, but I could not for the life of my figure out how to get the password to generate. I then used askBCS and was able to get the code working better, but still not correctly.
+3. After this I spent a while trying to get it working, leading up to the office hours on tuesday (5/17) where I spoke to another TA, Scott essentially told me I was over-complicating things as I was nearing 200 lines. He helped me find a much simpler way of setting up the code, but I was still getting an error with the password generation even though my array worked fine.
+4. Finally, I used askBCS again to figure out the issue, which was that on line 123 I was multiplying math.random by charSet.passwordLength, not charSet.length. This small changed fixed the code entirely.
 
 ### Built with
 
@@ -81,22 +81,27 @@ THEN the password is either displayed in an alert or written to the page
 - CSS
 - JavaScript
 
-### What I learned !!!
+### What I learned
 
--
+- For one, javascript is very difficult.
+- How to use if, else, and for statements.
 
-### Continued development !!!
+### Continued development
 
--
+- I need to devote some more time to learning javascript
+- I want to try and devote time to doing the 30 days of javascript challenge, just to try and hone my skills more.
 
-### Useful resources !!!
+### Useful resources
 
--
+- AskBCS was invaluable for this project, as well as TA's
+- StackOverflow was also helpful, albeit a bit less so
 
 ## Author
 
 - Linkedin - [Max McLaughlin](https://www.linkedin.com/in/max-mcla/)
 
-## Acknowledgments !!!
+## Acknowledgments
 
--
+- Luigi Campbell (TA), for helping me get started, helping me better understand how if statements work, and javascript syntax.
+- Scott Nelson (TA), for helping me realize how much I was complicating the project and assisting me in majorly simplifying my code.
+- AskBCS was hugely helpful for situation where StackOverflow and other resources were not able to help me figure out my issue.
